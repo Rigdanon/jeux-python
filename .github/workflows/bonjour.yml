@@ -15,3 +15,5 @@ jobs:
           uname -a
           python3 --version
           nproc
+          free -h
+          df -h /
