@@ -1,68 +1,48 @@
-#Pour utiliser le RANDOM il faut importer la librairie random
-import random
-#On utilise la fonction randint pour générer un nombre aléatoire entre 1 et 50
-#score = 0
-for ordi in range(1, 4):
-    A = random.randint(1, 3)
-    #B = random.randint(2, 10)
-    #C = A * B
-#print(f" {C}")
-    if A == 1:
-        A = "pierre"
-    elif A == 2:
-        A = "feuille"
-    else:
-        A = "ciseaux"
+# ============================================================
+# TP : Pierre – Feuille – Ciseaux (meilleur en 3 manches)
+# ============================================================
+# Objectifs :
+# - importer le module random
+# - utiliser une boucle while avec une condition composée
+# - comparer des chaînes et gérer plusieurs cas de victoire
+# - incrémenter un score
+# ============================================================
 
-    for joueur in range(1, 4):
-        B = random.randint(1, 3)
-    #print(f" {C}")
-    if B == 1:
-        B = "pierre"
-    elif B == 2:
-        B = "feuille"
-    else:
-        B = "ciseaux"
+import random  # pour tirer un choix aléatoire pour l'ordinateur
 
+score_ordi = 0
+score_joueur = 0
+
+# La partie continue tant qu'aucun des deux n'a atteint 3 points
+while score_joueur < 3 and score_ordi < 3:
+    # Tirage du choix de l'ordinateur : 1=pierre, 2=feuille, 3=ciseaux
+    tirage = random.randint(1, 3)
+    if tirage == 1:
+        ordi = "pierre"
+    elif tirage == 2:
+        ordi = "feuille"
+    else:
+        ordi = 'ciseaux'
+
+    # .lower() et .strip() normalisent la saisie (majuscules / espaces)
+    joueur = input("Pierre, Feuille ou ciseaux ? ").lower().strip()
+
+    print(f"L'ordinateur à joué {ordi}")
+
+    if joueur == ordi:
+        print("égalité !")
+    # Le \ permet de continuer la condition sur plusieurs lignes
     elif (joueur == "pierre" and ordi == "ciseaux") or \
-(joueur == "feuille" and ordi == "pierre") or \
-(joueur == "ciseaux" and ordi == "feuille"):
-    break
-
-    i = i + 1
-    choix = int(input(f"Question {i} : {A} x {B} = "))
-
-    if C == choix:
-        print(f" C'est juste!")
+        (joueur == "feuille" and ordi == 'pierre') or \
+        (joueur == 'ciseaux' and ordi == 'feuille'):
+        print("Vous avez gagné !")
+        score_joueur += 1  # score_joueur = score_joueur + 1
     else:
-        print(f"Perdu, c'était {C}")
+        print("L'ordinateur a gagné la manche")
+        score_ordi += 1
 
-    if C == choix:
-        score = score + 1
-        #print(f"Score : {score}/10")
-print(f"Score : {score}/10")
-if score == 10:
-    print(f"Parfait")
-elif score >= 7:
-    print(f"Très bien")
-elif score >= 5:
-    print(f"Pas mal")
+# Affichage du vainqueur de la partie
+if score_joueur == 3:
+    print("Vous avez gagné la partie")
 else:
-    print(f"Révisez vos tables")
-#choix = int(input("Votre proposition : "))
-
-#while choix != RD and coups < 7:
-    #coups = coups + 1
-    #print(f"Essai {coups} sur 7")
-
-    #choix = int(input("Votre proposition : "))
-    #print(f"Nombre magique {RD} ")
-    
-    #if choix < RD:
-        #print(" C'est plus.")        
-    #elif choix > RD:
-        #print(" C'est moins.")
-    #else:
-        #print(f"Bravo, trouvé en {coups} coups !")    
-    #if coups ==  7 and choix != RD:
-        #print(f"Vous avez dépassé plus de 7 essais le nb était {RD}.")
+    print("L'ordinateur gagne la partie")
