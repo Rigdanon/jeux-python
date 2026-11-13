@@ -25,7 +25,10 @@ jobs:
         run: |
           ls -la
           echo "Le code a été récupéré avec succès !"
-          
+      
+      - name: Affichage du nombre de fichier python de depot
+        run: ls *.py
+        
 
 
 
