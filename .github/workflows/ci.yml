@@ -12,9 +12,14 @@ jobs:
 
       - name: Installer Python 3.12
         uses: actions/setup-python@v7
-
+        
         with:
           python-version: "3.12"
-          
+
       - name: Vérifier la syntaxe
         run: python -m py_compile *.py
+
+      - name: Installer ruff
+        run: pip install ruff==0.16.8        
+      - name: Analyser le code avec ruff
+        run: ruff check .
